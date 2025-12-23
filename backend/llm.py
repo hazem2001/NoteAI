@@ -5,7 +5,8 @@ model_id = "Qwen/Qwen2.5-3B-Instruct"
 model = AutoModelForCausalLM.from_pretrained(
     model_id,
     load_in_4bit=True,
-    device_map="auto",           
+    device_map="auto",
+    offload_folder="./llmOffload",           
     torch_dtype="auto"            
 )
 
@@ -22,10 +23,10 @@ def query_notes(notes, query):
 
     outputs = model.generate(
         **inputs,
-        max_new_tokens=1000,
+        max_new_tokens=200,
         temperature=0.7,
         do_sample=True,
-        top_p=0.9
+        top_p=0.7
     )
 
     generated_tokens_only = outputs[0][inputs["input_ids"].shape[1]:]

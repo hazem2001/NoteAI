@@ -26,7 +26,8 @@ class UpdateNote(BaseModel):
 
 
 def change_embedding_to_list(note):
-    note.embedding = note.embedding.tolist()
+    if(note):
+        note.embedding = note.embedding.tolist()
     return note
 
 @app.get("/notes")
@@ -54,6 +55,7 @@ def get_note_id(id: int):
 def create_note(note: CreateNote):
     try:
         new_note = insert_noteDB(note.title, note.content)
+        note = change_embedding_to_list(new_note)
         if(new_note.id != None):
             return new_note
         else:
@@ -66,6 +68,7 @@ def create_note(note: CreateNote):
 def update_note(id: int, note: UpdateNote):
     try:
         update_noteDB(id, note.title, note.content)
+        note = change_embedding_to_list(get_noteDB(id))
         return note
     except SQLAlchemyError as e:
         print(e)
