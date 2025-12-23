@@ -6,7 +6,6 @@ model = AutoModelForCausalLM.from_pretrained(
     model_id,
     load_in_4bit=True,
     device_map="auto",           
-    offload_folder="llmOffload", 
     torch_dtype="auto"            
 )
 
