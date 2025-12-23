@@ -12,7 +12,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
-# If tokens exceed 1.3k, we drop them. Later, we can batch them.
+# If tokens exceed 2k, we drop them. Later, we can batch them.
 def query_notes(notes, query):
     prompt = f"Instruction : {query}\nInput:\n"
     for i, note in enumerate(notes):
