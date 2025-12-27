@@ -1,3 +1,3 @@
 Frontend not working yet.
 
-Project in progress (Backend needs cleaning and LLM as well).
+Project in progress (Current functionality, crud with Postgres database, embeddings search and LLM connection).
